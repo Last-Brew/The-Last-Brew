@@ -4,10 +4,10 @@ var speed = 200
 var velocity = Vector2()
 var player_id = 1
 
-var input_up = ""
-var input_down = ""
-var input_left = ""
-var input_right = ""
+var input_up = "ui_up"
+var input_down = "ui_down"
+var input_left = "ui_left"
+var input_right = "ui_right"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
