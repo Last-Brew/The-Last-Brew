@@ -2,7 +2,7 @@ extends Node
 
 @export var speed : float = 200.0
 var velocity : Vector2
-@export var player_id : int = 1
+@export var player_id : int
 
 @export var input_up : String = "ui_up"
 @export var input_down : String = "ui_down"
@@ -12,7 +12,8 @@ var position : Vector2
 
 func _ready():
 	if get_tree().multiplayer.is_server():
-		set_multiplayer_authority(get_tree().multiplayer.get_unique_id())
+		player_id = get_tree().multiplayer.get_unique_id()
+		set_multiplayer_authority(player_id)
 	else:
 		pass
 
