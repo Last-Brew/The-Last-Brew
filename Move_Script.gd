@@ -1,36 +1,38 @@
 extends Node
 
-var speed = 200
-var velocity = Vector2()
-var player_id = 1
+@export var speed : float = 200.0
+var velocity : Vector2
+@export var player_id : int = 1
 
-var input_up = "ui_up"
-var input_down = "ui_down"
-var input_left = "ui_left"
-var input_right = "ui_right"
+@export var input_up : String = "ui_up"
+@export var input_down : String = "ui_down"
+@export var input_left : String = "ui_left"
+@export var input_right : String = "ui_right"
+var position : Vector2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if get_tree().multiplayer.is_server():
+		set_multiplayer_authority(get_tree().multiplayer.get_unique_id())
+	else:
+		pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta: float) -> void:
 	velocity = Vector2()
 	
-	if Input.is_action_just_pressed(input_up):
+	if Input.is_action_pressed(input_up):
 		velocity.y -= 1
-	if Input.is_action_just_pressed(input_down):
+	if Input.is_action_pressed(input_down):
 		velocity.y += 1
-	if Input.is_action_just_pressed(input_left):
+	if Input.is_action_pressed(input_left):
 		velocity.x -= 1
-	if Input.is_action_just_pressed(input_right):
+	if Input.is_action_pressed(input_right):
 		velocity.x += 1
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-	
+		position += velocity * delta
+		rpc("update_position", position)
 
-# Multi player syncing to be added
-func _sync_position():
-	pass
+@rpc("any_peer")
+func update_position(new_position: Vector2) -> void:
+	position = new_position
