@@ -1,7 +1,5 @@
 extends Node
 
-# This is a test comment
-# Test comment from jackson's laptop
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
