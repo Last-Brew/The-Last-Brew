@@ -1,18 +1,16 @@
-extends Node
+extends CharacterBody2D
 
 @export var speed : float = 200.0
-var velocity : Vector2
 @export var player_id : int
 
 @export var input_up : String = "ui_up"
 @export var input_down : String = "ui_down"
 @export var input_left : String = "ui_left"
 @export var input_right : String = "ui_right"
-var position : Vector2
 
 func _ready():
-	if get_tree().multiplayer.is_server():
-		player_id = get_tree().multiplayer.get_unique_id()
+	if get_tree().get_multiplayer().is_server():
+		player_id = get_tree().get_multiplayer().get_unique_id()
 		set_multiplayer_authority(player_id)
 	else:
 		pass
@@ -32,8 +30,8 @@ func _process(delta: float) -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		position += velocity * delta
-		rpc("update_position", position)
+		rpc("update_position", global_position) # Use global_position here
 
 @rpc("any_peer")
 func update_position(new_position: Vector2) -> void:
-	position = new_position
+	global_position = new_position # Update global_position directly

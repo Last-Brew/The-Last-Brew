@@ -1,4 +1,17 @@
-[gd_scene format=3 uid="uid://bdcgpj3bguxkh"]
+[gd_scene load_steps=4 format=3 uid="uid://bdcgpj3bguxkh"]
+
+[ext_resource type="Texture2D" uid="uid://cxkoykwxaq52p" path="res://Art/Jack-sprite.png" id="1_4ux0o"]
+[ext_resource type="Script" path="res://Scripts/Move_Script.gd" id="1_bjvvk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6y4i"]
 
 [node name="Node2D" type="Node2D"]
-rotation = -0.261799
+
+[node name="Jack" type="CharacterBody2D" parent="."]
+script = ExtResource("1_bjvvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jack"]
+shape = SubResource("RectangleShape2D_o6y4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jack"]
+texture = ExtResource("1_4ux0o")
