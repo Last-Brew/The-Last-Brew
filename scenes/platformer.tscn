@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtoy10j8sd4iy"]
+[gd_scene load_steps=20 format=3 uid="uid://dtoy10j8sd4iy"]
 
 [ext_resource type="Texture2D" uid="uid://cr5ijy26op1iv" path="res://Assests/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/spring_.png" id="1_chcyh"]
 [ext_resource type="Texture2D" uid="uid://dd3na4jsd0w4q" path="res://Assests/fourSeasonsPlatformer_ [tileset, version 2.0]/objects_/staticObjects_.png" id="2_ewgyt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c3388gpptf1bn" path="res://Assests/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/blackout_.png" id="5_qadmg"]
 [ext_resource type="Texture2D" uid="uid://divr0lak1w1ma" path="res://Assests/fourSeasonsPlatformer_ [tileset, version 2.0]/foreground_/foreground_.png" id="6_thvol"]
 [ext_resource type="PackedScene" uid="uid://5p7w4u850pn5" path="res://scenes/platform.tscn" id="7_4qxx3"]
+[ext_resource type="PackedScene" uid="uid://dpf8y157qlre5" path="res://scenes/jackson.tscn" id="8_xwycm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7hig"]
 texture = ExtResource("1_chcyh")
@@ -667,6 +668,8 @@ _data = {
 "move": SubResource("Animation_hkqaq")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pfmtu"]
+
 [node name="Platformer" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -694,3 +697,15 @@ libraries = {
 "": SubResource("AnimationLibrary_0m4vm")
 }
 autoplay = "move"
+
+[node name="Jackson" parent="." instance=ExtResource("8_xwycm")]
+position = Vector2(152, -32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(152, -33)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(144, 29)
+shape = SubResource("WorldBoundaryShape2D_pfmtu")
