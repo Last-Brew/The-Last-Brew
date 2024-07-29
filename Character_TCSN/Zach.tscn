@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://sqkfishqp3kv"]
+
+[ext_resource type="Script" path="res://Scripts/Zach.gd" id="1_fgh0r"]
+[ext_resource type="Texture2D" uid="uid://cvw7s0ub4lhn4" path="res://Art/Zach-sprite.png" id="4_nf40y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byu68"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7pqb1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Zach" type="CharacterBody2D"]
+script = ExtResource("1_fgh0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_nf40y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_byu68")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7pqb1")
