@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq3f43g4d6c8o"]
+
+[ext_resource type="Script" path="res://Scripts/Craig.gd" id="2_ml4y4"]
+[ext_resource type="Texture2D" uid="uid://bbgaygrmi0t75" path="res://Art/Craig-Sprite.png" id="5_t85bq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64ynr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wg286"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Craig" type="CharacterBody2D"]
+script = ExtResource("2_ml4y4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_t85bq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_64ynr")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wg286")

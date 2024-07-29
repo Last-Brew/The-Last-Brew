@@ -1,17 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5bpyh2r2rkbk"]
+[gd_scene load_steps=2 format=3 uid="uid://c5bpyh2r2rkbk"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer_scene.gd" id="1_i4thu"]
-[ext_resource type="PackedScene" uid="uid://cfn6438gdclan" path="res://Character_TCSN/Jack.tscn" id="2_nub4n"]
-[ext_resource type="PackedScene" uid="uid://rutehec5uaor" path="res://Character_TCSN/Jackson.tscn" id="2_w10qr"]
-[ext_resource type="PackedScene" uid="uid://sqkfishqp3kv" path="res://Character_TCSN/Zach.tscn" id="3_pl0j2"]
-[ext_resource type="PackedScene" uid="uid://cq3f43g4d6c8o" path="res://Character_TCSN/Craig.tscn" id="4_p8nwt"]
 
 [node name="Multiplayer_Scene" type="Node2D"]
 script = ExtResource("1_i4thu")
-jack_scene = ExtResource("2_nub4n")
-jackson_scene = ExtResource("2_w10qr")
-zach_scene = ExtResource("3_pl0j2")
-craig_scene = ExtResource("4_p8nwt")
 
 [node name="host" type="Button" parent="."]
 offset_left = 256.0
@@ -62,8 +54,6 @@ offset_right = 186.0
 offset_bottom = 31.0
 text = "Choose Your Character
 "
-
-[node name="Spawner" type="Node2D" parent="."]
 
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Jack" to="." method="_on_jack_pressed"]

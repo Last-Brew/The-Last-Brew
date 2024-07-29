@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://rutehec5uaor"]
+
+[ext_resource type="Script" path="res://Scripts/Jackson.gd" id="1_lwsni"]
+[ext_resource type="Texture2D" uid="uid://dr4tt7qufd8l" path="res://Art/Jackson-sprite.png" id="3_okyjm"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iupjh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6cc6"]
+
+[node name="Jackson" type="CharacterBody2D"]
+script = ExtResource("1_lwsni")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_okyjm")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iupjh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o6cc6")
