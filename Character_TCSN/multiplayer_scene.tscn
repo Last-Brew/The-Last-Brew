@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5bpyh2r2rkbk"]
+
+[ext_resource type="PackedScene" uid="uid://cfn6438gdclan" path="res://Character_TCSN/Jack.tscn" id="2_nub4n"]
+
+[sub_resource type="GDScript" id="GDScript_x0ofg"]
+script/source = "extends Node2D
+ 
+var peer = ENetMultiplayerPeer.new()
+@export var player_scene: PackedScene
+ 
+ 
+func _on_host_pressed():
+	peer.create_server(135)
+	multiplayer.multiplayer_peer = peer
+	multiplayer.peer_connected.connect(_add_player)
+	_add_player()
+ 
+func _add_player(id = 1):
+	var player = player_scene.instantiate()
+	player.name = str(id)
+	call_deferred(\"add_child\",player)
+ 
+ 
+func _on_join_pressed():
+	peer.create_client(\"localhost\", 135)
+	multiplayer.multiplayer_peer = peer
+"
+
+[node name="Multiplayer_Scene" type="Node2D"]
+script = SubResource("GDScript_x0ofg")
+player_scene = ExtResource("2_nub4n")
+
+[node name="host" type="Button" parent="."]
+offset_top = 360.0
+offset_right = 44.0
+offset_bottom = 391.0
+text = "Host"
+
+[node name="join" type="Button" parent="."]
+offset_top = 400.0
+offset_right = 38.0
+offset_bottom = 431.0
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Character_TCSN/Jack.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="join" to="." method="_on_join_pressed"]
