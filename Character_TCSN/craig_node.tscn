@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bibwjtyr5c5ex"]
+
+[ext_resource type="Texture2D" uid="uid://bbgaygrmi0t75" path="res://Art/Craig-Sprite.png" id="1_2ccgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p42ak"]
+
+[node name="craig_node" type="Node2D"]
+
+[node name="craig" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="craig"]
+shape = SubResource("RectangleShape2D_p42ak")
+
+[node name="Sprite2D" type="Sprite2D" parent="craig"]
+texture = ExtResource("1_2ccgt")
