@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw7dsx0tecwu8"]
+
+[ext_resource type="Texture2D" uid="uid://cxkoykwxaq52p" path="res://Art/Jack-sprite.png" id="1_isae6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao2fj"]
+
+[node name="Jack_Node" type="Node2D"]
+
+[node name="Jack" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jack"]
+shape = SubResource("RectangleShape2D_ao2fj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jack"]
+texture = ExtResource("1_isae6")

@@ -12,8 +12,6 @@ func _ready():
 	if get_tree().get_multiplayer().is_server():
 		player_id = get_tree().get_multiplayer().get_unique_id()
 		set_multiplayer_authority(player_id)
-	else:
-		pass
 
 func _process(delta: float) -> void:
 	velocity = Vector2()
@@ -30,8 +28,8 @@ func _process(delta: float) -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		position += velocity * delta
-		rpc("update_position", global_position) # Use global_position here
+		rpc("update_position", global_position)
 
 @rpc("any_peer")
 func update_position(new_position: Vector2) -> void:
-	global_position = new_position # Update global_position directly
+	global_position = new_position
